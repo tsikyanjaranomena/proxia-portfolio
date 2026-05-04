@@ -1,0 +1,14 @@
+/* Hide default cursor on interactive elements when custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  [role="button"],
+  [data-cursor-hover] {
+    cursor: none !important;
+  }
+}
