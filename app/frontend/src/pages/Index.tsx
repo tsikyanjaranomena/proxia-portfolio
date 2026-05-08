@@ -16,7 +16,6 @@ const Index = () => {
     <>
       <LoadingScreen />
       <div className="min-h-screen bg-white dark:bg-[#0A0E27] relative overflow-x-hidden transition-colors duration-500">
-        {/* Global parallax decorative background */}
         <ParallaxBackground speed={0.4} className="fixed inset-0 pointer-events-none z-0">
           <div className="absolute top-[10%] -left-20 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#0066FF]/8 to-transparent blur-3xl" />
           <div className="absolute top-[60%] -right-20 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#00D4FF]/8 to-transparent blur-3xl" />

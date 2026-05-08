@@ -40,7 +40,7 @@ const Contact = () => {
       payload.append("email", formData.email);
       payload.append("subject", formData.subject || defaultSubject);
       payload.append("message", formData.message);
-      payload.append("_subject", `Proxiatech - ${formData.subject || defaultSubject}`);
+      payload.append("_subject", `ProxiaTech - ${formData.subject || defaultSubject}`);
       payload.append("_replyto", formData.email);
       payload.append("_template", "table");
       payload.append("_honey", "");

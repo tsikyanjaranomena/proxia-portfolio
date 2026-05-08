@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, CheckCircle2, Play, Globe } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const DIGITALIZATION_IMAGE = "https://mgx-backend-cdn.metadl.com/generate/images/798409/2026-05-03/n2q7leqaafnq/digitalization-professional-white.png";
+const DIGITALIZATION_IMAGE = "/images/digitalization-professional-white.png";
 
-// Animated counter component
 const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -42,12 +41,12 @@ const Hero = () => {
   const heroSubtitle = language === "fr"
     ? (
         <>
-          De l'idée au déploiement, <span className="text-[#0A0E27] font-semibold">Proxiatech</span> transforme vos ambitions en solutions digitales de haute performance. Web, mobile et logiciels sur mesure.
+          De l'idée au déploiement, <span className="text-[#0A0E27] font-semibold">ProxiaTech</span> transforme vos ambitions en solutions digitales de haute performance. Web, mobile et logiciels sur mesure.
         </>
       )
     : (
         <>
-          From idea to deployment, <span className="text-[#0A0E27] font-semibold">Proxiatech</span> transforms your ambitions into high-performance digital solutions. Web, mobile and custom software.
+          From idea to deployment, <span className="text-[#0A0E27] font-semibold">ProxiaTech</span> transforms your ambitions into high-performance digital solutions. Web, mobile and custom software.
         </>
       );
   const seeWorkText = language === "fr" ? "Voir nos réalisations" : "See our work";
@@ -61,7 +60,6 @@ const Hero = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left column - Text content */}
           <div className="text-center lg:text-left">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -95,7 +93,6 @@ const Hero = () => {
               {heroSubtitle}
             </motion.p>
 
-            {/* Features list */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -150,7 +147,6 @@ const Hero = () => {
               </motion.div>
             </motion.div>
 
-            {/* Animated Stats */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -178,7 +174,6 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right column - Simple professional image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -189,12 +184,15 @@ const Hero = () => {
               <img
                 src={DIGITALIZATION_IMAGE}
                 alt="Digital transformation"
+                loading="eager"
+                fetchPriority="high"
+                width={1024}
+                height={1024}
                 className="w-full h-auto object-contain select-none"
                 draggable={false}
               />
             </div>
 
-            {/* Floating badge - top right */}
             <div className="absolute top-4 -right-2 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 z-20">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
@@ -209,7 +207,6 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Floating badge - bottom left */}
             <div className="absolute bottom-4 -left-2 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 z-20">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0066FF] to-[#00D4FF] flex items-center justify-center">
@@ -225,7 +222,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}

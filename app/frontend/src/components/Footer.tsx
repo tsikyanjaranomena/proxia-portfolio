@@ -6,8 +6,7 @@ import {
   CONTACT_PHONE,
   CONTACT_PHONE_HREF,
 } from "@/lib/contact";
-
-const LOGO_URL = "https://mgx-backend-cdn.metadl.com/generate/images/798409/2026-05-03/n2ocl7qaaflq/proxiatech-logo.png";
+import { BRAND_MARK } from "@/lib/brand";
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -33,16 +32,15 @@ const Footer = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00D4FF] rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img
-                src={LOGO_URL}
-                alt="Proxiatech Logo"
+                src={BRAND_MARK}
+                alt="ProxiaTech Logo"
                 className="w-10 h-10 object-contain"
               />
               <span className="text-xl font-bold">
-                Proxia<span className="text-[#00D4FF]">tech</span>
+                Proxia<span className="text-[#00D4FF]">Tech</span>
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-4">
@@ -73,7 +71,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick links */}
           <div>
             <h4 className="font-semibold mb-4">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-sm text-white/60">
@@ -85,7 +82,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h4 className="font-semibold mb-4">{t.footer.servicesTitle}</h4>
             <ul className="space-y-2 text-sm text-white/60">
@@ -97,7 +93,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="font-semibold mb-4">{t.footer.contactTitle}</h4>
             <ul className="space-y-3 text-sm text-white/60">
@@ -123,7 +118,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
           <div>
-            © {currentYear} Proxiatech. {rights}
+            © {currentYear} ProxiaTech. {rights}
           </div>
           <div className="flex gap-6">
             {legalLinks.map((link) => (

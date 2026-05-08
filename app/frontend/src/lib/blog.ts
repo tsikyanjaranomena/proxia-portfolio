@@ -191,7 +191,7 @@ function getSiteDomainUrl() {
 }
 
 function getSiteName() {
-  return import.meta.env.VITE_APP_TITLE?.trim() || 'Proxiatech';
+  return import.meta.env.VITE_APP_TITLE?.trim() || 'ProxiaTech';
 }
 
 function getTwitterSiteHandle() {

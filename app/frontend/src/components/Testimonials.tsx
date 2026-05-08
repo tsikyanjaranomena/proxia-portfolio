@@ -11,8 +11,8 @@ const Testimonials = () => {
       name: "Rakoto A.",
       role: language === "fr" ? "Directeur Général, Société Madagascar Trade" : "CEO, Madagascar Trade Company",
       content: language === "fr"
-        ? "Proxiatech a transformé notre vision en une plateforme e-commerce performante. Leur professionnalisme et leur réactivité sont remarquables."
-        : "Proxiatech transformed our vision into a high-performing e-commerce platform. Their professionalism and responsiveness are remarkable.",
+        ? "ProxiaTech a transformé notre vision en une plateforme e-commerce performante. Leur professionnalisme et leur réactivité sont remarquables."
+        : "ProxiaTech transformed our vision into a high-performing e-commerce platform. Their professionalism and responsiveness are remarkable.",
       rating: 5,
       initials: "RA",
       color: "from-blue-500 to-cyan-500",
@@ -31,8 +31,8 @@ const Testimonials = () => {
       name: "Jean-Pierre H.",
       role: language === "fr" ? "CTO, FinTech Solutions" : "CTO, FinTech Solutions",
       content: language === "fr"
-        ? "Excellente maîtrise technique et respect des délais. Proxiatech est devenu notre partenaire de confiance pour tous nos projets digitaux."
-        : "Excellent technical mastery and respect for deadlines. Proxiatech has become our trusted partner for all our digital projects.",
+        ? "Excellente maîtrise technique et respect des délais. ProxiaTech est devenu notre partenaire de confiance pour tous nos projets digitaux."
+        : "Excellent technical mastery and respect for deadlines. ProxiaTech has become our trusted partner for all our digital projects.",
       rating: 5,
       initials: "JH",
       color: "from-orange-500 to-red-500",

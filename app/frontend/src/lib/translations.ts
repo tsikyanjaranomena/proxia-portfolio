@@ -23,7 +23,7 @@ export const translations = {
       titleHighlight: "transformation digitale",
       title2: "réussie",
       description:
-        "Proxiatech accompagne les entreprises dans la conception et le développement de solutions digitales innovantes, sur mesure et performantes.",
+        "ProxiaTech accompagne les entreprises dans la conception et le développement de solutions digitales innovantes, sur mesure et performantes.",
       stats: {
         projects: "Projets livrés",
         clients: "Clients satisfaits",
@@ -76,7 +76,7 @@ export const translations = {
       badge: "À propos de nous",
       title: "Qui sommes-nous ?",
       p1Prefix: "",
-      p1Brand: "Proxiatech",
+      p1Brand: "ProxiaTech",
       p1Suffix:
         " est une société de développement informatique dédiée à la création de solutions digitales innovantes. Depuis notre création, nous mettons notre expertise technique au service des entreprises qui souhaitent accélérer leur transformation numérique.",
       p2: "Notre équipe pluridisciplinaire combine rigueur technique, créativité et écoute active pour livrer des projets qui font la différence.",
@@ -144,7 +144,7 @@ export const translations = {
         t1: {
           role: "Directeur Général, Société Madagascar Trade",
           content:
-            "Proxiatech a transformé notre vision en une plateforme e-commerce performante. Leur professionnalisme et leur réactivité sont remarquables.",
+            "ProxiaTech a transformé notre vision en une plateforme e-commerce performante. Leur professionnalisme et leur réactivité sont remarquables.",
         },
         t2: {
           role: "Fondatrice, StartupTech Océan Indien",
@@ -154,7 +154,7 @@ export const translations = {
         t3: {
           role: "CTO, FinTech Solutions",
           content:
-            "Excellente maîtrise technique et respect des délais. Proxiatech est devenu notre partenaire de confiance pour tous nos projets digitaux.",
+            "Excellente maîtrise technique et respect des délais. ProxiaTech est devenu notre partenaire de confiance pour tous nos projets digitaux.",
         },
       },
     },
@@ -222,7 +222,7 @@ export const translations = {
       titleHighlight: "digital transformation",
       title2: "",
       description:
-        "Proxiatech supports businesses in designing and developing innovative, tailor-made and high-performance digital solutions.",
+        "ProxiaTech supports businesses in designing and developing innovative, tailor-made and high-performance digital solutions.",
       stats: {
         projects: "Projects delivered",
         clients: "Satisfied clients",
@@ -273,7 +273,7 @@ export const translations = {
       badge: "About us",
       title: "Who are we?",
       p1Prefix: "",
-      p1Brand: "Proxiatech",
+      p1Brand: "ProxiaTech",
       p1Suffix:
         " is a software development company dedicated to creating innovative digital solutions. Since our founding, we have put our technical expertise at the service of companies looking to accelerate their digital transformation.",
       p2: "Our multidisciplinary team combines technical rigor, creativity and active listening to deliver projects that make a difference.",
@@ -339,7 +339,7 @@ export const translations = {
         t1: {
           role: "CEO, Madagascar Trade Company",
           content:
-            "Proxiatech transformed our vision into a high-performing e-commerce platform. Their professionalism and responsiveness are remarkable.",
+            "ProxiaTech transformed our vision into a high-performing e-commerce platform. Their professionalism and responsiveness are remarkable.",
         },
         t2: {
           role: "Founder, StartupTech Indian Ocean",
@@ -349,7 +349,7 @@ export const translations = {
         t3: {
           role: "CTO, FinTech Solutions",
           content:
-            "Excellent technical mastery and respect for deadlines. Proxiatech has become our trusted partner for all our digital projects.",
+            "Excellent technical mastery and respect for deadlines. ProxiaTech has become our trusted partner for all our digital projects.",
         },
       },
     },

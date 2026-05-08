@@ -58,12 +58,12 @@ const About = () => {
   const p1 = language === "fr"
     ? (
         <>
-          <strong className="text-[#0A0E27]">Proxiatech</strong> est une société de développement informatique dédiée à la création de solutions digitales innovantes. Depuis notre création, nous mettons notre expertise technique au service des entreprises qui souhaitent accélérer leur transformation numérique.
+          <strong className="text-[#0A0E27]">ProxiaTech</strong> est une société de développement informatique dédiée à la création de solutions digitales innovantes. Depuis notre création, nous mettons notre expertise technique au service des entreprises qui souhaitent accélérer leur transformation numérique.
         </>
       )
     : (
         <>
-          <strong className="text-[#0A0E27]">Proxiatech</strong> is a software development company dedicated to creating innovative digital solutions. Since our founding, we have put our technical expertise at the service of companies looking to accelerate their digital transformation.
+          <strong className="text-[#0A0E27]">ProxiaTech</strong> is a software development company dedicated to creating innovative digital solutions. Since our founding, we have put our technical expertise at the service of companies looking to accelerate their digital transformation.
         </>
       );
   const p2 = language === "fr"
