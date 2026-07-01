@@ -1,81 +1,86 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
+type CursorState = "default" | "pointer" | "text";
+
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isPointer, setIsPointer] = useState(false);
+  const [cursorState, setCursorState] = useState<CursorState>("default");
   const [isClicking, setIsClicking] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
-  // Cursor position
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  // Trailing dot (follows faster)
-  const dotX = useSpring(cursorX, { stiffness: 800, damping: 35 });
-  const dotY = useSpring(cursorY, { stiffness: 800, damping: 35 });
+  // Dot — très réactif
+  const dotX = useSpring(cursorX, { stiffness: 950, damping: 40 });
+  const dotY = useSpring(cursorY, { stiffness: 950, damping: 40 });
 
-  // Outer ring (follows slower for trail effect)
-  const ringX = useSpring(cursorX, { stiffness: 180, damping: 22 });
-  const ringY = useSpring(cursorY, { stiffness: 180, damping: 22 });
+  // Anneau — suit avec un léger retard
+  const ringX = useSpring(cursorX, { stiffness: 150, damping: 20 });
+  const ringY = useSpring(cursorY, { stiffness: 150, damping: 20 });
 
   useEffect(() => {
-    // Detect touch device
-    const isTouch =
-      "ontouchstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      window.matchMedia("(pointer: coarse)").matches;
-    setIsTouchDevice(isTouch);
-    if (isTouch) return;
+    // Seul critère fiable sur Windows : l'appareil a-t-il un pointeur précis (souris) ?
+    const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!hasMouse) {
+      setIsTouchDevice(true);
+      return;
+    }
+
+    document.body.style.cursor = "none";
 
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
-
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
 
     const handlePointerCheck = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target) return;
-      const interactive = target.closest(
-        'a, button, [role="button"], input, textarea, select, label, [data-cursor-hover]'
-      );
-      setIsPointer(!!interactive);
+      if (target.closest('a, button, [role="button"], [data-cursor-hover]')) {
+        setCursorState("pointer");
+      } else if (target.closest("p, h1, h2, h3, h4, h5, h6, li")) {
+        setCursorState("text");
+      } else {
+        setCursorState("default");
+      }
     };
+
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
 
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("mousemove", handlePointerCheck);
-    window.addEventListener("mouseenter", handleMouseEnter);
     document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
-
-    // Hide default cursor
-    document.body.style.cursor = "none";
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mousemove", handlePointerCheck);
-      window.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       document.body.style.cursor = "";
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, []); // dépendances vides — pas de fermeture obsolète
 
   if (isTouchDevice) return null;
 
+  const isPointer = cursorState === "pointer";
+  const isText = cursorState === "text";
+
   return (
     <>
-      {/* Outer ring with gradient border */}
+      {/* Anneau externe */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full hidden md:block"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
         style={{
           x: ringX,
           y: ringY,
@@ -83,58 +88,79 @@ const CustomCursor = () => {
           translateY: "-50%",
         }}
         animate={{
-          width: isPointer ? 56 : 36,
-          height: isPointer ? 56 : 36,
+          width: isPointer ? 58 : isText ? 40 : 34,
+          height: isPointer ? 58 : isText ? 40 : 34,
           opacity: isVisible ? 1 : 0,
-          scale: isClicking ? 0.85 : 1,
+          scale: isClicking ? 0.78 : 1,
         }}
         transition={{
-          width: { type: "spring", stiffness: 300, damping: 20 },
-          height: { type: "spring", stiffness: 300, damping: 20 },
-          scale: { type: "spring", stiffness: 400, damping: 20 },
-          opacity: { duration: 0.2 },
+          width: { type: "spring", stiffness: 260, damping: 22 },
+          height: { type: "spring", stiffness: 260, damping: 22 },
+          scale: { type: "spring", stiffness: 420, damping: 18 },
+          opacity: { duration: 0.15 },
         }}
       >
+        {/* Bordure statique */}
         <div
-          className="w-full h-full rounded-full"
+          className="absolute inset-0 rounded-full"
           style={{
-            backgroundColor: isPointer ? "rgba(147, 197, 253, 0.24)" : "transparent",
-            opacity: isPointer ? 0.95 : 0.8,
+            border: isPointer
+              ? "1.5px solid rgba(0,212,255,0.6)"
+              : "1.5px solid rgba(0,102,255,0.65)",
+            boxShadow: isPointer
+              ? "0 0 20px rgba(0,102,255,0.3), inset 0 0 10px rgba(0,212,255,0.06)"
+              : "none",
+            background: isPointer ? "rgba(0,102,255,0.05)" : "transparent",
+            transition: "border-color 0.2s, box-shadow 0.2s, background 0.2s",
           }}
-        >
-          <div
-            className="w-full h-full rounded-full"
-            style={{
-              backgroundColor: "transparent",
-              border: isPointer
-                ? "2px solid rgba(0, 168, 255, 0.9)"
-                : "1.5px solid rgba(0, 102, 255, 0.75)",
-            }}
-          />
-        </div>
+        />
+
+        {/* Arc tournant visible en état pointer */}
+        <motion.div
+          className="absolute inset-0 rounded-full"
+          style={{
+            border: "1.5px solid transparent",
+            borderTopColor: "#00D4FF",
+            borderRightColor: "rgba(0,102,255,0.5)",
+          }}
+          animate={{
+            rotate: isPointer ? 360 : 0,
+            opacity: isPointer ? 1 : 0,
+          }}
+          transition={{
+            rotate: isPointer
+              ? { duration: 1.8, repeat: Infinity, ease: "linear" }
+              : { duration: 0.3 },
+            opacity: { duration: 0.2 },
+          }}
+        />
       </motion.div>
 
-      {/* Inner dot */}
+      {/* Point central */}
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full hidden md:block"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full"
         style={{
           x: dotX,
           y: dotY,
           translateX: "-50%",
           translateY: "-50%",
-          background: "linear-gradient(135deg, #0066FF, #00D4FF)",
-          boxShadow: "0 0 12px rgba(0, 102, 255, 0.45)",
+          background: "linear-gradient(135deg, #0066FF 0%, #00D4FF 100%)",
         }}
         animate={{
-          width: isPointer ? 10 : 8,
-          height: isPointer ? 10 : 8,
+          width: isText ? 4 : isPointer ? 6 : 8,
+          height: isText ? 4 : isPointer ? 6 : 8,
           opacity: isVisible ? 1 : 0,
-          scale: isClicking ? 1.35 : 1,
+          scale: isClicking ? 1.7 : 1,
+          boxShadow: isPointer
+            ? "0 0 18px rgba(0,102,255,0.7), 0 0 6px rgba(0,212,255,0.5)"
+            : "0 0 10px rgba(0,102,255,0.45)",
         }}
         transition={{
           scale: { type: "spring", stiffness: 500, damping: 20 },
-          width: { type: "spring", stiffness: 300, damping: 20 },
-          height: { type: "spring", stiffness: 300, damping: 20 },
+          width: { type: "spring", stiffness: 320, damping: 22 },
+          height: { type: "spring", stiffness: 320, damping: 22 },
+          opacity: { duration: 0.15 },
+          boxShadow: { duration: 0.2 },
         }}
       />
     </>

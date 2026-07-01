@@ -6,8 +6,8 @@ import BlogRoutes from './blog-routes';
 import Index from './pages/Index';
 import AuthCallback from './pages/AuthCallback';
 import AuthError from './pages/AuthError';
-import CustomCursor from './components/CustomCursor';
 import { LanguageProvider } from './hooks/useLanguage';
+import { ThemeProvider } from './hooks/useTheme';
 // MODULE_IMPORTS_START
 // MODULE_IMPORTS_END
 
@@ -28,15 +28,16 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     {/* MODULE_PROVIDERS_START */}
     {/* MODULE_PROVIDERS_END */}
-    <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <CustomCursor />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </TooltipProvider>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <TooltipProvider>
+          <Toaster />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </TooltipProvider>
+      </LanguageProvider>
+    </ThemeProvider>
     {/* MODULE_PROVIDERS_CLOSE */}
   </QueryClientProvider>
 );

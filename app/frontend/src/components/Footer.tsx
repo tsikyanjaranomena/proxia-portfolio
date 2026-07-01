@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Linkedin } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 import {
   CONTACT_EMAIL,
@@ -27,7 +27,7 @@ const Footer = () => {
   const rights = language === "fr" ? "Tous droits réservés." : "All rights reserved.";
 
   return (
-    <footer className="bg-gradient-to-br from-[#0A0E27] to-[#0F1642] text-white pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-black text-white pt-16 pb-8 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#0066FF] rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00D4FF] rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -48,8 +48,10 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://web.facebook.com/profile.php?id=61570683964020"
                 aria-label="Facebook"
+                target="_blank"
+                rel="noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#0066FF] flex items-center justify-center transition-colors"
               >
                 <Facebook className="w-4 h-4" />
@@ -60,13 +62,6 @@ const Footer = () => {
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#0066FF] flex items-center justify-center transition-colors"
               >
                 <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                aria-label="Twitter"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#0066FF] flex items-center justify-center transition-colors"
-              >
-                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>

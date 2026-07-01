@@ -14,15 +14,15 @@ const technologies = [
   { name: "Django", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
   { name: "Flutter", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
   { name: "React Native", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Angular", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
   { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
   { name: "Laravel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
   { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
   { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
   { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+  { name: "Oracle", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
   { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
   { name: "Tailwind CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-  { name: "GraphQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" },
   { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
 ];
 
@@ -58,12 +58,12 @@ const About = () => {
   const p1 = language === "fr"
     ? (
         <>
-          <strong className="text-[#0A0E27]">ProxiaTech</strong> est une société de développement informatique dédiée à la création de solutions digitales innovantes. Depuis notre création, nous mettons notre expertise technique au service des entreprises qui souhaitent accélérer leur transformation numérique.
+          <strong className="text-[#0A0E27] dark:text-white">ProxiaTech</strong> est une société de développement informatique dédiée à la création de solutions digitales innovantes. Depuis notre création, nous mettons notre expertise technique au service des entreprises qui souhaitent accélérer leur transformation numérique.
         </>
       )
     : (
         <>
-          <strong className="text-[#0A0E27]">ProxiaTech</strong> is a software development company dedicated to creating innovative digital solutions. Since our founding, we have put our technical expertise at the service of companies looking to accelerate their digital transformation.
+          <strong className="text-[#0A0E27] dark:text-white">ProxiaTech</strong> is a software development company dedicated to creating innovative digital solutions. Since our founding, we have put our technical expertise at the service of companies looking to accelerate their digital transformation.
         </>
       );
   const p2 = language === "fr"
@@ -80,22 +80,21 @@ const About = () => {
     : "We use a modern and proven technology ecosystem to deliver robust solutions.";
 
   return (
-    <section id="apropos" className="py-24 bg-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
+    <section id="apropos" className="py-24 bg-white dark:bg-black relative overflow-hidden">
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
           <AnimatedSection animation="slide-right">
-            <div className="inline-block px-4 py-1 rounded-full bg-blue-100 text-[#0066FF] text-sm font-medium mb-4">
+            <div className="inline-block px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0066FF] dark:text-[#60a5fa] text-sm font-medium mb-4">
               {badge}
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A0E27] mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#0A0E27] dark:text-white mb-6">
               {title}
             </h2>
-            <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
               {p1}
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               {p2}
             </p>
 
@@ -106,8 +105,8 @@ const About = () => {
               >
                 <Zap className="w-6 h-6 text-[#0066FF] flex-shrink-0 mt-1" />
                 <div>
-                  <div className="font-semibold text-[#0A0E27]">{agilityLabel}</div>
-                  <div className="text-sm text-slate-600">{agilityDesc}</div>
+                  <div className="font-semibold text-[#0A0E27] dark:text-white">{agilityLabel}</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">{agilityDesc}</div>
                 </div>
               </motion.div>
               <motion.div
@@ -116,8 +115,8 @@ const About = () => {
               >
                 <Award className="w-6 h-6 text-[#0066FF] flex-shrink-0 mt-1" />
                 <div>
-                  <div className="font-semibold text-[#0A0E27]">{qualityLabel}</div>
-                  <div className="text-sm text-slate-600">{qualityDesc}</div>
+                  <div className="font-semibold text-[#0A0E27] dark:text-white">{qualityLabel}</div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">{qualityDesc}</div>
                 </div>
               </motion.div>
             </div>
@@ -131,17 +130,17 @@ const About = () => {
                   <motion.div
                     whileHover={{ scale: 1.02, y: -4 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-2xl p-6 hover:shadow-xl transition-shadow"
+                    className="bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#2A2A2A] rounded-2xl p-6 hover:shadow-xl transition-shadow"
                   >
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0066FF] to-[#00D4FF] flex items-center justify-center flex-shrink-0 shadow-lg">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-[#0A0E27] mb-2">
+                        <h3 className="text-lg font-bold text-[#0A0E27] dark:text-white mb-2">
                           {value.title}
                         </h3>
-                        <p className="text-slate-600">{value.description}</p>
+                        <p className="text-slate-600 dark:text-slate-400">{value.description}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -152,10 +151,10 @@ const About = () => {
         </div>
 
         <AnimatedSection animation="fade-up" className="text-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-[#0A0E27] mb-3">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#0A0E27] dark:text-white mb-3">
             {techTitle}
           </h3>
-          <p className="text-slate-600 mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
             {techDesc}
           </p>
         </AnimatedSection>
@@ -169,7 +168,7 @@ const About = () => {
               <motion.div
                 whileHover={{ y: -6, scale: 1.08 }}
                 transition={{ type: "spring", stiffness: 400 }}
-                className="group flex flex-col items-center justify-center gap-2 p-4 bg-white border border-slate-200 rounded-xl hover:border-[#0066FF] hover:shadow-lg transition-all cursor-default"
+                className="group flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#2A2A2A] rounded-xl hover:border-[#0066FF] dark:hover:border-[#0066FF] hover:shadow-lg transition-all cursor-default"
                 title={tech.name}
               >
                 <img
@@ -178,7 +177,7 @@ const About = () => {
                   className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
                   loading="lazy"
                 />
-                <span className="text-xs font-medium text-slate-700 text-center">
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-300 text-center">
                   {tech.name}
                 </span>
               </motion.div>

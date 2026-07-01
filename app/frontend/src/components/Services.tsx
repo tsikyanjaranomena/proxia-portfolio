@@ -10,6 +10,7 @@ import {
   Headphones,
 } from "lucide-react";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
+import TiltCard from "./TiltCard";
 import { useLanguage } from "@/hooks/useLanguage";
 
 const Services = () => {
@@ -90,24 +91,19 @@ const Services = () => {
     : "From idea to production, we support you at every step with expertise, creativity and commitment.";
 
   return (
-    <section id="services" className="py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-cyan-100 rounded-full blur-3xl opacity-50" />
-      </div>
-
+    <section id="services" className="py-24 bg-white dark:bg-black relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block px-4 py-1 rounded-full bg-blue-100 text-[#0066FF] text-sm font-medium mb-4">
+          <div className="inline-block px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0066FF] dark:text-[#60a5fa] text-sm font-medium mb-4">
             {badge}
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0A0E27] mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#0A0E27] dark:text-white mb-6">
             {title1}{" "}
             <span className="bg-gradient-to-r from-[#0066FF] to-[#00D4FF] bg-clip-text text-transparent">
               {titleHighlight}
             </span>
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-slate-600 dark:text-slate-400">
             {description}
           </p>
         </AnimatedSection>
@@ -117,10 +113,11 @@ const Services = () => {
             const Icon = service.icon;
             return (
               <StaggerItem key={index} animation="fade-up">
+                <TiltCard className="h-full" intensity={7}>
                 <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileHover={{ scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="group relative bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-2xl hover:border-transparent transition-all duration-300 h-full overflow-hidden"
+                  className="group relative bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#2A2A2A] rounded-2xl p-6 hover:shadow-2xl hover:border-transparent transition-all duration-300 h-full overflow-hidden"
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity rounded-2xl`}
@@ -130,13 +127,14 @@ const Services = () => {
                   >
                     <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0A0E27] mb-2 relative z-10">
+                  <h3 className="text-lg font-bold text-[#0A0E27] dark:text-white mb-2 relative z-10">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed relative z-10">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed relative z-10">
                     {service.description}
                   </p>
                 </motion.div>
+                </TiltCard>
               </StaggerItem>
             );
           })}

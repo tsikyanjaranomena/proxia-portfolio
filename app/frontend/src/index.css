@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 99.6%;
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
+    --card: 0 0% 99.6%;
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
+    --popover: 0 0% 99.6%;
     --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 222.2 47.4% 11.2%;
@@ -115,22 +115,11 @@
   }
 }
 
-/* Custom cursor: hide default cursor on interactive elements on desktop */
-@media (hover: hover) and (pointer: fine) {
-  html,
-  body,
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  label,
-  [role="button"],
-  [data-cursor-hover] {
-    cursor: none !important;
-  }
-}
 
 html {
   scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
 }

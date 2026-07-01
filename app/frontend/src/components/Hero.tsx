@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, CheckCircle2, Play, Globe } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const DIGITALIZATION_IMAGE = "/images/digitalization-professional-white.png";
+const DIGITALIZATION_IMAGE_LIGHT = "/images/digitalization-professional-white.png";
+const DIGITALIZATION_IMAGE_DARK  = "/images/digitalization-professional-black.png";
 
 const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -41,7 +42,7 @@ const Hero = () => {
   const heroSubtitle = language === "fr"
     ? (
         <>
-          De l'idée au déploiement, <span className="text-[#0A0E27] font-semibold">ProxiaTech</span> transforme vos ambitions en solutions digitales de haute performance. Web, mobile et logiciels sur mesure.
+          De l'idée au déploiement, <span className="text-[#0A0E27] dark:text-white font-semibold">ProxiaTech</span> transforme vos ambitions en solutions digitales de haute performance. Web, mobile et logiciels sur mesure.
         </>
       )
     : (
@@ -56,7 +57,7 @@ const Hero = () => {
   return (
     <section
       id="accueil"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white dark:bg-black"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -65,7 +66,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#0A0E27] mb-6 leading-[1.05] tracking-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#0A0E27] dark:text-white mb-6 leading-[1.05] tracking-tight"
             >
               {creationText}
               <br />
@@ -88,7 +89,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="text-lg md:text-xl text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
               {heroSubtitle}
             </motion.p>
@@ -103,7 +104,7 @@ const Hero = () => {
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-sm text-slate-700"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#1A1A1A] border border-slate-200 dark:border-[#2A2A2A] shadow-sm text-sm text-slate-700 dark:text-slate-300"
                 >
                   <CheckCircle2 className="w-4 h-4 text-green-500" />
                   {feature}
@@ -137,7 +138,7 @@ const Hero = () => {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="!bg-transparent !hover:bg-transparent border-2 border-slate-300 text-[#0A0E27] hover:text-[#0066FF] hover:border-[#0066FF] px-8 py-6 text-base group"
+                  className="!bg-transparent !hover:bg-transparent border-2 border-slate-300 dark:border-slate-600 text-[#0A0E27] dark:text-white hover:text-[#0066FF] hover:border-[#0066FF] px-8 py-6 text-base group"
                 >
                   <a href="#portfolio">
                     <Play className="mr-2 w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -151,25 +152,24 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
-              className="grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0"
+              className="grid grid-cols-3 divide-x divide-slate-200 dark:divide-white/10 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden max-w-lg mx-auto lg:mx-0"
             >
               {[
-                { value: 50, suffix: "+", label: t.hero.stats.projects },
-                { value: 30, suffix: "+", label: t.hero.stats.clients },
-                { value: 5, suffix: "+", label: t.hero.stats.experience },
+                { value: 20, suffix: "+", label: t.hero.stats.projects },
+                { value: 15, suffix: "+", label: t.hero.stats.clients },
+                { value: 2, suffix: "+", label: t.hero.stats.experience },
               ].map((stat, i) => (
-                <motion.div
+                <div
                   key={i}
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  className="text-center lg:text-left cursor-default p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/80 shadow-sm hover:shadow-lg transition-shadow"
+                  className="text-center cursor-default px-4 py-5"
                 >
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#0066FF] to-[#00D4FF] bg-clip-text text-transparent">
+                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#0066FF] to-[#00D4FF] bg-clip-text text-transparent">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </div>
-                  <div className="text-xs md:text-sm text-slate-600 mt-1 font-medium">
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium tracking-wide">
                     {stat.label}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </motion.div>
           </div>
@@ -182,39 +182,48 @@ const Hero = () => {
           >
             <div className="relative max-w-md mx-auto">
               <img
-                src={DIGITALIZATION_IMAGE}
+                src={DIGITALIZATION_IMAGE_LIGHT}
                 alt="Digital transformation"
                 loading="eager"
                 fetchPriority="high"
                 width={1024}
                 height={1024}
-                className="w-full h-auto object-contain select-none"
+                className="relative w-full h-auto object-contain select-none mix-blend-multiply block dark:hidden"
+                draggable={false}
+              />
+              <img
+                src={DIGITALIZATION_IMAGE_DARK}
+                aria-hidden="true"
+                loading="eager"
+                width={1254}
+                height={1254}
+                className="relative w-full h-auto object-contain select-none mix-blend-screen hidden dark:block"
                 draggable={false}
               />
             </div>
 
-            <div className="absolute top-4 -right-2 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 z-20">
+            <div className="absolute top-4 -right-2 bg-white/80 dark:bg-[#1A1A1A]/90 backdrop-blur-md rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.3)] p-4 border border-slate-200/50 dark:border-[#2A2A2A] z-20">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
                   <Zap className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500">{performanceLabel}</div>
-                  <div className="text-lg font-bold text-[#0A0E27]">
+                  <div className="text-xs text-slate-500 dark:text-slate-400">{performanceLabel}</div>
+                  <div className="text-lg font-bold text-[#0A0E27] dark:text-white">
                     <AnimatedCounter value={99} suffix="%" />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="absolute bottom-4 -left-2 bg-white rounded-2xl shadow-xl p-4 border border-slate-100 z-20">
+            <div className="absolute bottom-4 -left-2 bg-white/80 dark:bg-[#1A1A1A]/90 backdrop-blur-md rounded-2xl shadow-[0_2px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.3)] p-4 border border-slate-200/50 dark:border-[#2A2A2A] z-20">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0066FF] to-[#00D4FF] flex items-center justify-center">
                   <Globe className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500">{networkLabel}</div>
-                  <div className="text-lg font-bold text-[#0A0E27]">24/7</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">{networkLabel}</div>
+                  <div className="text-lg font-bold text-[#0A0E27] dark:text-white">24/7</div>
                 </div>
               </div>
             </div>
@@ -227,7 +236,7 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 rounded-full border-2 border-slate-300 flex items-start justify-center p-2">
+        <div className="w-6 h-10 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-[#0066FF] rounded-full" />
         </div>
       </motion.div>

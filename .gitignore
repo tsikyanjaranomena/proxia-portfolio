@@ -1,0 +1,10 @@
+.DS_Store
+**/.DS_Store
+
+app/frontend/node_modules/
+app/frontend/dist/
+app/frontend/.vite/
+app/frontend/.mgx/
+
+coverage/
+*.log

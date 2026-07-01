@@ -145,11 +145,7 @@ const LoadingScreen = () => {
               </h1>
             </div>
 
-            <p className="mt-4 text-sm uppercase tracking-[0.18em] text-slate-500">
-              Build. Launch. Scale.
-            </p>
-
-            <div className="mt-3 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+            <div className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
               Loading {progress}%
             </div>
           </div>
