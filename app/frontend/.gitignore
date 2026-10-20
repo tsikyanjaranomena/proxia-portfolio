@@ -1,0 +1,23 @@
+# Dépendances
+node_modules/
+
+# Build et caches Vite
+dist/
+.vite/
+vite.config.ts.timestamp-*.mjs
+*.tsbuildinfo
+
+# Outils de la plateforme MGX
+.mgx/
+
+# Tests
+coverage/
+
+# Variables d'environnement locales (VITE_* : publiques une fois buildées, mais propres à chaque machine)
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*

@@ -17,7 +17,7 @@ function escapeHtmlAttr(str: string): string {
     .replace(/'/g, '&#39;');
 }
 
-process.env.VITE_APP_TITLE ??= process.env.OVERVIEW_TITLE ?? 'Proxiatech';
+process.env.VITE_APP_TITLE ??= process.env.OVERVIEW_TITLE ?? 'ProxiaTech · Agence digitale à Madagascar';
 process.env.VITE_APP_DESCRIPTION ??=
   process.env.OVERVIEW_DESCRIPTION ??
   'Proxiatech - agence digitale a Madagascar pour vos solutions web, mobile et logicielles.';
@@ -37,7 +37,12 @@ export default defineConfig(({ command }) => {
       react(),
       atoms(),
       Sitemap({
-        hostname: 'https://atoms.template.com',
+        // Domaine public du site (sitemap.xml + robots.txt) ; surchargeable avec VITE_SITE_URL au build
+        hostname: process.env.VITE_SITE_URL?.trim() || 'https://proxiatech.com',
+        // Pages de l'application à déclarer (le plugin ne voit que les fichiers HTML générés)
+        dynamicRoutes: ['/projet'],
+        // Blog désactivé (aucun article) : sa page vide ne doit pas être indexée
+        exclude: ['/blog'],
         lastmod: getSitemapLastmod(),
         readable: true,
         generateRobotsTxt: true,
