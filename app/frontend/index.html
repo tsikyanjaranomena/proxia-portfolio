@@ -8,12 +8,37 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>%VITE_APP_TITLE%</title>
-    <meta name="description" content="%VITE_APP_DESCRIPTION%" />
-    <meta name="author" content="Proxiatech" />
 
+    <!-- SEO : description affichée sous le titre dans Google, indexation autorisée -->
+    <meta name="description" content="%VITE_APP_DESCRIPTION%" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="ProxiaTech" />
+    <meta name="application-name" content="ProxiaTech" />
+    <!-- Couleur de la barre du navigateur sur mobile (bleu de marque #0066FF) -->
+    <meta name="theme-color" content="#0066FF" />
+    <!-- Évite que Safari iOS transforme automatiquement les numéros en liens bleus -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Open Graph : aperçu des liens partagés (LinkedIn, Facebook, WhatsApp…) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ProxiaTech" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://proxiatech.com/" />
     <meta property="og:title" content="%VITE_APP_TITLE%" />
     <meta property="og:description" content="%VITE_APP_DESCRIPTION%" />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://proxiatech.com/brand/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ProxiaTech — Nous créons l'excellence digitale" />
+
+    <!-- Twitter / X : grande carte avec image -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%VITE_APP_TITLE%" />
+    <meta name="twitter:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta name="twitter:image" content="https://proxiatech.com/brand/og-image.png" />
+    <meta name="twitter:image:alt" content="ProxiaTech — Nous créons l'excellence digitale" />
   </head>
 
   <body>
