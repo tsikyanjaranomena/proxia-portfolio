@@ -265,7 +265,11 @@ export const TESTIMONIALS: ReadonlyArray<{
 ];
 
 export const SOCIAL_LINKS = [
-  { id: "linkedin", label: "LinkedIn", href: "#", icon: "/images/social/linkedin.png" },
+  { id: "linkedin", 
+    label: "LinkedIn", 
+    href: "https://www.linkedin.com/company/proxiatech/", 
+    icon: "/images/social/linkedin.png" 
+  },
   {
     id: "facebook",
     label: "Facebook",
