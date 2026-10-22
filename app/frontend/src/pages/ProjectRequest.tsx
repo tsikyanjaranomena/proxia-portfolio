@@ -113,11 +113,12 @@ const ProjectRequest = () => {
       payload.append("Service", form.services);
       payload.append("Avancement", form.avancement);
       payload.append("Démarrage", form.deadline);
-      payload.append("Projet", form.description);
       payload.append("name", form.name);
       payload.append("email", form.email);
       payload.append("Organisation", form.organisation || "—");
       payload.append("Téléphone", form.telephone || "—");
+      // Description du projet en dernière ligne du mail (texte le plus long)
+      payload.append("Projet", form.description);
       payload.append("_subject", `ProxiaTech - Demande de projet : ${form.services}`);
       payload.append("_replyto", form.email);
       payload.append("_template", "table");
