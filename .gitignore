@@ -1,10 +1,10 @@
+# Règles communes à tout le dépôt.
+# Le site a son propre .gitignore : app/frontend/.gitignore
+
+# Système
 .DS_Store
 **/.DS_Store
+Thumbs.db
 
-app/frontend/node_modules/
-app/frontend/dist/
-app/frontend/.vite/
-app/frontend/.mgx/
-
-coverage/
-*.log
+# Notes de déploiement internes (non publiées)
+app/DEPLOIEMENT.md

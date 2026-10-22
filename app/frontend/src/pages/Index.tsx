@@ -1,61 +1,47 @@
-import Header from "@/components/Header";
-import CustomCursor from "@/components/CustomCursor";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import About from "@/components/About";
-import Portfolio from "@/components/Portfolio";
-import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
-import LoadingScreen from "@/components/LoadingScreen";
-import SectionTransition from "@/components/SectionTransition";
+import { MotionConfig } from "framer-motion";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import GradientDefs from "@/components/brand/GradientDefs";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/contact/Contact";
+import Hero from "@/components/sections/hero/Hero";
+import Method from "@/components/sections/method/Method";
+import Portfolio from "@/components/sections/Portfolio";
+import Services from "@/components/sections/Services";
+import Technologies from "@/components/sections/Technologies";
+import Testimonials from "@/components/sections/Testimonials";
+import { scrollToSection } from "@/hooks/useActiveSection";
 
 const Index = () => {
-  return (
-    <>
-      <CustomCursor />
-      <LoadingScreen />
-      <div className="min-h-screen bg-white dark:bg-black relative overflow-x-hidden transition-colors duration-500">
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-          {/* Fond SVG — noir en light, blanc en dark via invert */}
-          <img
-            src="/images/fond.svg"
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.045] dark:invert dark:opacity-[0.055] transition-opacity duration-500"
-          />
-          {/* Accents bleus conservés */}
-          <div className="absolute top-[8%] -left-24 w-[560px] h-[560px] rounded-full bg-gradient-to-br from-[#0066FF]/6 to-transparent blur-2xl" />
-          <div className="absolute top-[65%] -right-24 w-[620px] h-[620px] rounded-full bg-gradient-to-br from-[#00D4FF]/5 to-transparent blur-2xl" />
-        </div>
+  const { hash } = useLocation();
 
-        <div className="relative z-10">
-          <Header />
-          <main>
-            <Hero />
-            <SectionTransition>
-              <Services />
-            </SectionTransition>
-            <Process />
-            <SectionTransition>
-              <About />
-            </SectionTransition>
-            <SectionTransition>
-              <Portfolio />
-            </SectionTransition>
-            <SectionTransition>
-              <Testimonials />
-            </SectionTransition>
-            <SectionTransition>
-              <Contact />
-            </SectionTransition>
-          </main>
-          <Footer />
-          <ScrollToTop />
-        </div>
+  // Arrivée depuis une autre page sur une ancre (/#services…) : défilement vers la section
+  useEffect(() => {
+    if (!hash) return;
+    const timer = window.setTimeout(() => scrollToSection(hash.slice(1)), 350);
+    return () => window.clearTimeout(timer);
+  }, [hash]);
+
+  return (
+    <MotionConfig reducedMotion="user">
+      <GradientDefs />
+      <div className="relative min-h-screen overflow-clip bg-surface">
+        <Header />
+        <main>
+          <Hero />
+          <Services />
+          <Method />
+          <About />
+          <Technologies />
+          <Portfolio />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-    </>
+    </MotionConfig>
   );
 };
 

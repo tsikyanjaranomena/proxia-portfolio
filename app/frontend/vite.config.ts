@@ -4,9 +4,7 @@ import path from 'path';
 import { viteSourceLocator } from '@metagptx/vite-plugin-source-locator';
 import { atoms } from '@metagptx/web-sdk/plugins';
 import { vitePrerenderPlugin } from 'vite-prerender-plugin';
-import Sitemap from 'vite-plugin-sitemap';
 import { getBlogRoutes } from './prerender/blog-routes.js';
-import { getSitemapLastmod } from './prerender/blog-sitemap.js';
 
 function escapeHtmlAttr(str: string): string {
   return str
@@ -17,13 +15,19 @@ function escapeHtmlAttr(str: string): string {
     .replace(/'/g, '&#39;');
 }
 
-process.env.VITE_APP_TITLE ??= process.env.OVERVIEW_TITLE ?? 'Proxiatech';
+process.env.VITE_APP_TITLE ??= process.env.OVERVIEW_TITLE ?? 'ProxiaTech · Agence digitale à Madagascar';
 process.env.VITE_APP_DESCRIPTION ??=
   process.env.OVERVIEW_DESCRIPTION ??
-  'Proxiatech - agence digitale a Madagascar pour vos solutions web, mobile et logicielles.';
+  "ProxiaTech, agence digitale à Madagascar : sites web, applications mobiles et logiciels sur mesure, de l'idée au déploiement.";
 process.env.VITE_APP_TITLE = escapeHtmlAttr(process.env.VITE_APP_TITLE);
 process.env.VITE_APP_DESCRIPTION = escapeHtmlAttr(process.env.VITE_APP_DESCRIPTION);
-process.env.VITE_APP_LOGO_URL ??= process.env.OVERVIEW_LOGO_URL ?? 'https://public-frontend-cos.metadl.com/mgx/img/favicon_atoms.ico';
+
+// --- Serveur de développement (npm run dev uniquement : aucun effet sur le build de production) ---
+// Surchargeables par variables d'environnement.
+/** Interfaces d'écoute : 0.0.0.0 = accessible depuis le réseau local (ex. test sur téléphone). */
+const DEV_HOST = process.env.VITE_HOST || '0.0.0.0';
+/** Port du serveur de dev. */
+const DEV_PORT = parseInt(process.env.VITE_PORT || '3000', 10);
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -36,12 +40,7 @@ export default defineConfig(({ command }) => {
       }),
       react(),
       atoms(),
-      Sitemap({
-        hostname: 'https://atoms.template.com',
-        lastmod: getSitemapLastmod(),
-        readable: true,
-        generateRobotsTxt: true,
-      }),
+      // SEO : sitemap.xml et robots.txt sont des fichiers statiques dans public/ (copiés tels quels dans dist/)
       ...(blogPrerenderRoutes.length > 0
         ? vitePrerenderPlugin({
             renderTarget: '#root',
@@ -56,14 +55,8 @@ export default defineConfig(({ command }) => {
       },
     },
     server: {
-      host: '0.0.0.0', // Listen on all network interfaces.
-      port: parseInt(process.env.VITE_PORT || '3000'),
-      proxy: {
-        '/api': {
-          target: `http://localhost:8000`,
-          changeOrigin: true,
-        },
-      },
+      host: DEV_HOST,
+      port: DEV_PORT,
       watch: { usePolling: true, interval: 600 },
     },
     build: {

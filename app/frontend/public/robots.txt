@@ -1,2 +1,8 @@
+# Règles pour les robots des moteurs de recherche
 User-agent: *
 Allow: /
+
+# Blog désactivé (aucun article) : page vide à ne pas indexer
+Disallow: /blog
+
+Sitemap: https://proxiatech.com/sitemap.xml
