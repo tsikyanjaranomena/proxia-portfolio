@@ -10,10 +10,10 @@ import { EASE_OUT_EXPO, Reveal, SplitText } from "@/components/motion/Reveal";
 import { PROJECT_BACKGROUNDS } from "@/data/backgrounds";
 import { SERVICES } from "@/data/site";
 import { useLanguage } from "@/hooks/useLanguage";
+import { CONTACT_FORM_ENDPOINT } from "@/lib/contact";
 import type { TitleSegment } from "@/lib/translations";
 import { cn } from "@/lib/utils";
 import { ProjectForm } from "@/types/ProjectForm";
-import { useProjectContact } from "@/hooks/useProjectContact";
 
 /** Noms des champs = clés de ProjectForm = attributs name du HTML. */
 type Field = keyof ProjectForm;
@@ -79,7 +79,6 @@ const ProjectRequest = () => {
   };
   const [form, setForm] = useState(initial);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const { submitProjectForm } = useProjectContact();
 
   useEffect(() => {
     const previous = document.title;
@@ -107,9 +106,36 @@ const ProjectRequest = () => {
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setStatus("sending");
+    // Même fonctionnement que le formulaire de contact (FormSubmit, sans backend).
+    // Les clés servent d'intitulés dans le tableau du mail reçu.
     try {
-      
-      await submitProjectForm(form);
+      const payload = new FormData();
+      payload.append("Service", form.services);
+      payload.append("Avancement", form.avancement);
+      payload.append("Démarrage", form.deadline);
+      payload.append("Projet", form.description);
+      payload.append("name", form.name);
+      payload.append("email", form.email);
+      payload.append("Organisation", form.organisation || "—");
+      payload.append("Téléphone", form.telephone || "—");
+      payload.append("_subject", `ProxiaTech - Demande de projet : ${form.services}`);
+      payload.append("_replyto", form.email);
+      payload.append("_template", "table");
+      payload.append("_honey", "");
+
+      const response = await fetch(CONTACT_FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: payload,
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.success === false) {
+        throw new Error("PROJECT_SUBMIT_FAILED");
+      }
+
       setForm(initial);
       setStatus("success");
     } catch (error) {

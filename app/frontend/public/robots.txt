@@ -2,8 +2,6 @@
 User-agent: *
 Allow: /
 
-# API des formulaires : rien à indexer
-Disallow: /api/
 # Blog désactivé (aucun article) : page vide à ne pas indexer
 Disallow: /blog
 

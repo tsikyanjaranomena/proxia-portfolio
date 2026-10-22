@@ -1,5 +1,5 @@
 # Règles communes à tout le dépôt.
-# Chaque application a son propre .gitignore : app/frontend/.gitignore et app/backend/.gitignore
+# Le site a son propre .gitignore : app/frontend/.gitignore
 
 # Système
 .DS_Store

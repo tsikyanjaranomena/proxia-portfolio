@@ -4,8 +4,8 @@ import Button from "@/components/common/Button";
 import { CheckCircleIcon, PaperPlaneIcon, WarningCircleIcon } from "@/components/icons";
 import { EASE_OUT_EXPO } from "@/components/motion/Reveal";
 import { useLanguage } from "@/hooks/useLanguage";
+import { CONTACT_FORM_ENDPOINT } from "@/lib/contact";
 import { cn } from "@/lib/utils";
-import { useContact } from "@/hooks/useContact";
 import type { ContactForm } from "@/types/ContactForm";
 
 const EMPTY_FORM: ContactForm = { name: "", email: "", subject: "", message: "" };
@@ -25,7 +25,6 @@ const ContactForm = () => {
   const { t } = useLanguage();
   const [form, setForm] = useState(EMPTY_FORM);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const { submitContactForm } = useContact();
 
   const onChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (status === "error") setStatus("idle");
@@ -37,14 +36,34 @@ const ContactForm = () => {
     setStatus("sending");
     const subject = form.subject || t.contact.defaultSubject;
 
+    // Envoi identique à l'ancienne landing page (branche main) : FormSubmit, sans backend
     try {
-      // Sujet facultatif : le sujet par défaut est envoyé s'il est laissé vide
-      await submitContactForm({ ...form, subject });
+      const payload = new FormData();
+      payload.append("name", form.name);
+      payload.append("email", form.email);
+      payload.append("subject", subject);
+      payload.append("message", form.message);
+      payload.append("_subject", `ProxiaTech - ${subject}`);
+      payload.append("_replyto", form.email);
+      payload.append("_template", "table");
+      payload.append("_honey", "");
+
+      const response = await fetch(CONTACT_FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: payload,
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.success === false) {
+        throw new Error("CONTACT_SUBMIT_FAILED");
+      }
 
       setForm(EMPTY_FORM);
       setStatus("success");
-      
-      window.setTimeout(() => setStatus("idle"), 5000);
+      window.setTimeout(() => setStatus("idle"), 4000);
     } catch (error) {
       console.error("Contact form submission failed:", error);
       setStatus("error");

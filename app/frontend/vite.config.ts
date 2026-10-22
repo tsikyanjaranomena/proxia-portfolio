@@ -23,14 +23,11 @@ process.env.VITE_APP_TITLE = escapeHtmlAttr(process.env.VITE_APP_TITLE);
 process.env.VITE_APP_DESCRIPTION = escapeHtmlAttr(process.env.VITE_APP_DESCRIPTION);
 
 // --- Serveur de développement (npm run dev uniquement : aucun effet sur le build de production) ---
-// Surchargeables par variables d'environnement, sans préfixe VITE_ pour DEV_API_TARGET :
-// les variables VITE_* des fichiers .env sont exposées au code du navigateur.
+// Surchargeables par variables d'environnement.
 /** Interfaces d'écoute : 0.0.0.0 = accessible depuis le réseau local (ex. test sur téléphone). */
 const DEV_HOST = process.env.VITE_HOST || '0.0.0.0';
 /** Port du serveur de dev. */
 const DEV_PORT = parseInt(process.env.VITE_PORT || '3000', 10);
-/** Backend local vers lequel le proxy redirige les appels /api. */
-const DEV_API_TARGET = process.env.DEV_API_TARGET || 'http://localhost:8000';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -60,12 +57,6 @@ export default defineConfig(({ command }) => {
     server: {
       host: DEV_HOST,
       port: DEV_PORT,
-      proxy: {
-        '/api': {
-          target: DEV_API_TARGET,
-          changeOrigin: true,
-        },
-      },
       watch: { usePolling: true, interval: 600 },
     },
     build: {

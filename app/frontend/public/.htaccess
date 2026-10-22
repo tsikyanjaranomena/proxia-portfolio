@@ -1,15 +1,13 @@
 # Retour vers index.html pour les adresses du site (ex. /projet), sur les hébergeurs Apache / LiteSpeed (cPanel).
 # Sans cette règle, ouvrir ou recharger proxiatech.com/projet donne une erreur 404.
 # Ignoré sans effet par les autres hébergeurs, qui ont leur propre réglage :
+#   Render (Static Site) : Settings → Redirects/Rewrites → Source "/*", Destination "/index.html", Action "Rewrite"
 #   Netlify : public/_redirects → "/*  /index.html  200"
-#   Vercel  : vercel.json → rewrites { "source": "/((?!api/).*)", "destination": "/index.html" }
+#   Vercel  : vercel.json → rewrites { "source": "/(.*)", "destination": "/index.html" }
 #   Cloudflare Pages : aucun réglage (comportement par défaut pour une SPA)
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-
-  # Ne jamais réécrire les appels à l'API
-  RewriteRule ^api(/|$) - [L]
 
   # Fichiers et dossiers réels (images, JS, CSS, sitemap…) : servis tels quels
   RewriteCond %{REQUEST_FILENAME} -f [OR]
