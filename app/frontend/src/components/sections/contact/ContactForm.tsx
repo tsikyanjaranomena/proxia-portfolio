@@ -11,13 +11,13 @@ import type { ContactForm } from "@/types/ContactForm";
 const EMPTY_FORM: ContactForm = { name: "", email: "", subject: "", message: "" };
 
 const fieldClass =
-  "type-text peer w-full border-0 border-b border-line bg-transparent px-0 pb-3 pt-2 text-ink placeholder:text-muted-text/80 focus:outline-none focus:ring-0";
+  "type-text peer w-full border-0 border-b border-line bg-transparent px-0 pb-3 pt-2 text-ink placeholder:text-muted-text/80 focus:outline-none focus:ring-0 [&:-webkit-autofill]:bg-transparent [&:-webkit-autofill]:[-webkit-text-fill-color:var(--ink)]";
 
 /** Champ souligné, avec un trait dégradé qui se dessine au focus. */
 const UnderlineField = ({ children }: { children: React.ReactNode }) => (
-  <div className="relative">
+  <div className="relative overflow-hidden">
     {children}
-    <span className="pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-brand-gradient transition-transform duration-500 ease-out-expo peer-focus:scale-x-100" />
+    <span className="pointer-events-none absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 bg-brand-gradient transition-transform duration-500 ease-out-expo peer-focus:scale-x-100" />
   </div>
 );
 
@@ -112,7 +112,7 @@ const ContactForm = () => {
                 />
               </UnderlineField>
             ))}
-            <UnderlineField>
+<div className="relative overflow-hidden">
               <textarea
                 id="contact-message"
                 name="message"
@@ -124,7 +124,8 @@ const ContactForm = () => {
                 aria-label={t.contact.fields.message}
                 className={cn(fieldClass, "resize-none pb-6")}
               />
-            </UnderlineField>
+              <span className="pointer-events-none absolute bottom-1.5 left-0 h-[1px] w-full origin-left scale-x-0 bg-brand-gradient transition-transform duration-500 ease-out-expo peer-focus:scale-x-100" />
+            </div>
 
             {status === "error" && (
               <div role="alert" className="flex items-start gap-3 rounded-md bg-red-50 px-4 py-3 text-red-700 dark:bg-red-500/10 dark:text-red-300">
